@@ -78,7 +78,7 @@ spring:
 spring:
   profiles: test
   datasource:
-    url: jdbc:mysql://120.27.229.54:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    url: jdbc:mysql://120.27.229.54:3306/shopkeeper?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
     username: root
     password: gxmy2018
     filters: wall,mergeStat

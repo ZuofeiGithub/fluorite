@@ -43,7 +43,11 @@ public class RestApiInteceptor extends HandlerInterceptorAdapter {
         return check(request, response);
     }
 
-    private boolean check(HttpServletRequest request, HttpServletResponse response) {
+    private boolean check(HttpServletRequest request, HttpServletResponse response){
+        return checkHeader(request,response);
+    }
+
+    private boolean checkHeader(HttpServletRequest request, HttpServletResponse response) {
         if (request.getServletPath().equals(JwtConstants.AUTH_PATH)) {
             return true;
         }
@@ -53,23 +57,39 @@ public class RestApiInteceptor extends HandlerInterceptorAdapter {
             authToken = requestHeader.substring(7);
 
             //验证token是否过期,包含了验证jwt是否正确
-            try {
-                boolean flag = JwtTokenUtil.isTokenExpired(authToken);
-                if (flag) {
-                    RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
-                    return false;
-                }
-            } catch (JwtException e) {
-                //有异常就是token解析失败
-                RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
-                return false;
-            }
+            if (checkToken(response, authToken)) return false;
         } else {
             //header没有带Bearer字段
             RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
             return false;
         }
         return true;
+    }
+
+    private boolean checkParams(HttpServletRequest request,HttpServletResponse response){
+        if (request.getServletPath().equals(JwtConstants.AUTH_PATH)) {
+            return true;
+        }
+        String authToken  = request.getParameter("token");
+
+        //验证token是否过期,包含了验证jwt是否正确
+        if (checkToken(response, authToken)) return false;
+        return true;
+    }
+
+    private boolean checkToken(HttpServletResponse response, String authToken) {
+        try {
+            boolean flag = JwtTokenUtil.isTokenExpired(authToken);
+            if (flag) {
+                RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
+                return true;
+            }
+        } catch (JwtException e) {
+            //有异常就是token解析失败
+            RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+            return true;
+        }
+        return false;
     }
 
 }

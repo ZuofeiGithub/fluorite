@@ -27,8 +27,10 @@ public interface JwtConstants {
 
     String SECRET = "defaultSecret";
 
-    Long EXPIRATION = 604800L;
+    Long EXPIRATION_WEEK = 604800L; //一个星期的秒数
 
-    String AUTH_PATH = "/gunsApi/auth";
+    long EXPIRATION_YEAR = 31536000L;//一年的秒数
+
+    String AUTH_PATH = "/Api/auth";
 
 }

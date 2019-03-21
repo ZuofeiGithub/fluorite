@@ -18,6 +18,8 @@ package cn.stylefeng.guns.core.util;
 import cn.stylefeng.guns.core.common.constant.JwtConstants;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import io.jsonwebtoken.*;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -113,6 +115,7 @@ public class JwtTokenUtil {
      */
     public static String generateToken(String userId) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("uid",userId);
         return doGenerateToken(claims, userId);
     }
 
@@ -121,8 +124,9 @@ public class JwtTokenUtil {
      */
     private static String doGenerateToken(Map<String, Object> claims, String subject) {
         final Date createdDate = new Date();
-        final Date expirationDate = new Date(createdDate.getTime() + JwtConstants.EXPIRATION * 1000);
-
+        final Date expirationDate = new Date(createdDate.getTime() + JwtConstants.EXPIRATION_YEAR * 1000);
+//        String dateStr = DateFormatUtils.format(expirationDate,"yyyy-MM-dd HH:mm:ss");
+//        System.out.println(dateStr);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)

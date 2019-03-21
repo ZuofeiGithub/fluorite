@@ -42,7 +42,7 @@ import java.util.HashMap;
  * @Date 2018/7/20 23:39
  */
 @RestController
-@RequestMapping("/gunsApi")
+@RequestMapping("/Api")
 public class ApiController extends BaseController {
 
     @Autowired
@@ -88,6 +88,7 @@ public class ApiController extends BaseController {
      */
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public Object test() {
+        SUCCESS_TIP.setData(1234);
         return SUCCESS_TIP;
     }
 
