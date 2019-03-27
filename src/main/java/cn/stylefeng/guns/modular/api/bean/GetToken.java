@@ -1,24 +1,24 @@
 package cn.stylefeng.guns.modular.api.bean;
 
 public class GetToken {
-    private String AppKey;
-    private String Secret;
+    private String appKey;
+    private String appSecret;
 
     public String getAppKey() {
-        return AppKey;
+        return appKey;
     }
 
     public GetToken setAppKey(String appKey) {
-        AppKey = appKey;
+        this.appKey = appKey;
         return this;
     }
 
-    public String getSecret() {
-        return Secret;
+    public String getAppSecret() {
+        return appSecret;
     }
 
-    public GetToken setSecret(String secret) {
-        Secret = secret;
+    public GetToken setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
         return this;
     }
 }
