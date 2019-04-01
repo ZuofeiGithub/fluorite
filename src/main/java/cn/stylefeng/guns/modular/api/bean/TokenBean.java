@@ -1,6 +1,6 @@
 package cn.stylefeng.guns.modular.api.bean;
 
-public class TokenResp {
+public class TokenBean extends BaseResp{
 
     /**
      * data : {"accessToken":"at.7jrcjmna8qnqg8d3dgnzs87m4v2dme3l-32enpqgusd-1jvdfe4-uxo15ik0s","expireTime":1470810222045}
@@ -9,8 +9,7 @@ public class TokenResp {
      */
 
     private DataBean data;
-    private String code;
-    private String msg;
+
 
     public DataBean getData() {
         return data;
@@ -20,21 +19,6 @@ public class TokenResp {
         this.data = data;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public static class DataBean {
         /**

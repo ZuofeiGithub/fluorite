@@ -142,7 +142,7 @@
             <version>${swagger.version}</version>
         </dependency>
 
-        <!--jwt token-->
+        <!--jwt tokenBean-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>

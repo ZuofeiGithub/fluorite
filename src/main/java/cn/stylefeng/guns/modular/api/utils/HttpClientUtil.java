@@ -97,7 +97,6 @@ public class HttpClientUtil {
             e.printStackTrace();
         }
         return result;
-
     }
 
     /**
@@ -138,5 +137,4 @@ public class HttpClientUtil {
         }
         return entity;
     }
-
 }

@@ -55,7 +55,7 @@ public class Token extends Model<Token> {
 
     @Override
     public String toString() {
-        return "Token{" +
+        return "TokenBean{" +
         ", id=" + id +
         ", accessToken=" + accessToken +
         ", expireTime=" + expireTime +
